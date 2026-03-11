@@ -1,0 +1,44 @@
+USE [POSFAPCENTER]
+GO
+
+/****** Object:  Table [dbo].[CRD_ITEMBARCODES]    Script Date: 3/11/2026 12:48:53 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CRD_ITEMBARCODES](
+	[IBR_ITM_CODE] [varchar](50) NOT NULL,
+	[IBR_BARCODE] [varchar](50) NOT NULL,
+	[IBR_UNITCODE] [nvarchar](50) NOT NULL,
+	[IBR_CONVFACT] [decimal](18, 4) NOT NULL,
+	[IBR_LASTUPDATE] [datetime] NULL,
+	[IBR_IMPORTED] [int] NULL,
+	[IBR_STATUS] [int] NULL,
+	[IBR_SCALE] [varchar](50) NULL,
+ CONSTRAINT [PK_CRD_ITEMBARCODES] PRIMARY KEY CLUSTERED 
+(
+	[IBR_ITM_CODE] ASC,
+	[IBR_BARCODE] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[CRD_ITEMBARCODES] ADD  CONSTRAINT [DF_CRD_ITEMBARCODES_IBR_LASTUPDATE]  DEFAULT (getdate()) FOR [IBR_LASTUPDATE]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Malın kodu' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMBARCODES', @level2type=N'COLUMN',@level2name=N'IBR_ITM_CODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Satış üçün barkod' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMBARCODES', @level2type=N'COLUMN',@level2name=N'IBR_BARCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ölçü vahidi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMBARCODES', @level2type=N'COLUMN',@level2name=N'IBR_UNITCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Çevirim əmsalı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMBARCODES', @level2type=N'COLUMN',@level2name=N'IBR_CONVFACT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Son yenilənmə zamanı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMBARCODES', @level2type=N'COLUMN',@level2name=N'IBR_LASTUPDATE'
+GO
