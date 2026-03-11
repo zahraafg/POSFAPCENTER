@@ -1,0 +1,109 @@
+USE [POSFAPCENTER]
+GO
+
+/****** Object:  Table [dbo].[CRD_ITEMS]    Script Date: 3/11/2026 12:33:01 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CRD_ITEMS](
+	[ITM_CODE] [varchar](50) NOT NULL,
+	[ITM_TYPE] [varchar](10) NULL,
+	[ITM_NAME] [nvarchar](250) NULL,
+	[ITM_UNITCODE] [nvarchar](10) NULL,
+	[ITM_GRP_CODE] [varchar](50) NULL,
+	[ITM_MRK_CODE] [varchar](50) NULL,
+	[ITM_PRD_CODE] [varchar](50) NULL,
+	[ITM_SPL_CODE] [varchar](50) NULL,
+	[ITM_SCT_CODE] [varchar](50) NULL,
+	[ITM_BONUCE] [decimal](18, 4) NULL,
+	[ITM_SPECODE1] [varchar](50) NULL,
+	[ITM_SPECODE2] [varchar](50) NULL,
+	[ITM_SPECODE3] [varchar](50) NULL,
+	[ITM_SPECODE4] [varchar](50) NULL,
+	[ITM_SPECODE5] [varchar](50) NULL,
+	[ITM_SALEVAT1] [decimal](18, 4) NULL,
+	[ITM_SALEVAT2] [decimal](18, 4) NULL,
+	[ITM_RETURNVAT] [decimal](18, 4) NULL,
+	[ITM_SCALE] [varchar](50) NULL,
+	[ITM_LASTUPDATE] [datetime] NULL,
+	[ITM_IMPORTED] [int] NULL,
+	[ITM_STATUS] [int] NULL,
+	[ITM_UNITSMALL] [nvarchar](10) NULL,
+	[ITM_CONVFACT] [float] NULL,
+	[ITM_ONHAND] [float] NULL,
+	[ITM_SHELFLIFE] [float] NULL,
+	[ITM_STORECONDITION] [nvarchar](50) NULL,
+	[ITM_CSPSALEVAT1] [int] NULL,
+	[ITM_CSPSALEVAT2] [int] NULL,
+	[ITM_CSPRETURNVAT] [int] NULL,
+	[ITM_BARCODES] [varchar](500) NULL,
+	[ITM_DIVIDE] [smallint] NULL,
+ CONSTRAINT [PK_CRD_ITEMS_1] PRIMARY KEY CLUSTERED 
+(
+	[ITM_CODE] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 85, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[CRD_ITEMS] ADD  CONSTRAINT [DF_CRD_ITEMS_ITM_LASTUPDATE]  DEFAULT (getdate()) FOR [ITM_LASTUPDATE]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Malın kodu' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_CODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Malların kompnaiya şərtləri üçün tiplər' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_TYPE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mal adı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_NAME'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Malın ölçü vahidi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_UNITCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mal qrupunun bağlantısı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_GRP_CODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Marka bağlantısı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_MRK_CODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'İstehsalçı firma' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_PRD_CODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Təchizatçı firma' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SPL_CODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mağaza seksiyasının kodu' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SCT_CODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mallar üzrə bonus balları' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_BONUCE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Özəl kod' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SPECODE1'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Özəl kod' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SPECODE2'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Özəl kod' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SPECODE3'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Özəl kod' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SPECODE4'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Özəl kod' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SPECODE5'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'PERAKENDE satış' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SALEVAT1'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'TOPDAN satış' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_SALEVAT2'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Geri qaytarma' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_RETURNVAT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Son yenilənmə' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_ITEMS', @level2type=N'COLUMN',@level2name=N'ITM_LASTUPDATE'
+GO
