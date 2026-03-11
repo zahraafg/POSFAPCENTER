@@ -1,0 +1,149 @@
+USE POSFAPCENTER;
+
+/* bir mehsul tap ki hem barcode, qiymeti, adi 
+ve activ dir ya yox endirimlidir ya endirimsiz, 
+baslama tarix ve son tarix */
+select 
+	IBR_BARCODE,
+	PRC_PRICE,
+	ITM_NAME,
+	IBR_STATUS,
+	PRC_PRICETYPE,
+	PRC_DATE,
+	PRC_ENDDATE,
+	EOMONTH(PRC_ENDDATE) as EndOfMonth
+from CRD_PRICES
+left join CRD_ITEMBARCODES 
+on IBR_ITM_CODE = PRC_ITM_CODE
+join CRD_ITEMS
+on ITM_CODE = IBR_ITM_CODE
+where exists (
+	select 1
+	from CRD_ITEMBARCODES
+	left join CRD_PRICES
+	on PRC_ITM_CODE = IBR_ITM_CODE
+	where IBR_STATUS = 1
+	and PRC_PRICETYPE = 1
+	) 
+and not exists (
+	select 1
+	from CRD_ITEMBARCODES
+	left join CRD_PRICES
+	on PRC_ITM_CODE = IBR_ITM_CODE
+	where IBR_STATUS = -1
+	and PRC_PRICETYPE = 3
+	);
+
+-- OR
+select 
+	ITM_CODE,
+	IBR_BARCODE,
+	PRC_PRICE,
+	ITM_NAME,
+	IBR_STATUS,
+	PRC_PRICETYPE,
+	PRC_DATE,
+	PRC_ENDDATE,
+	EOMONTH(PRC_ENDDATE) as EndOfMonth
+from CRD_PRICES
+left join CRD_ITEMBARCODES 
+on IBR_ITM_CODE = PRC_ITM_CODE
+join CRD_ITEMS
+on ITM_CODE = IBR_ITM_CODE
+where IBR_STATUS = -1
+and PRC_PRICETYPE = 1;
+
+/* 101312, 101724 və 102050 kodlu 
+məhsullar üçün neçə qiymət olduğunu tapın. */
+select 
+	ITM_CODE,
+	COUNT(PRC_PRICE) as count_price
+from CRD_ITEMS
+left join CRD_PRICES
+on PRC_ITM_CODE = ITM_CODE
+where ITM_CODE in ('101312', '101724', '102050')
+group by ITM_CODE;
+
+-- OR
+select 
+	ITM_CODE,
+	COUNT(PRC_PRICE) over() as count_price
+from CRD_ITEMS
+left join CRD_PRICES
+on PRC_ITM_CODE = ITM_CODE
+where ITM_CODE in ('101312', '101724', '102050');
+
+/* 101724 kodlu məhsul üçün 
+aktiv və deaktiv olan qiymət məlumatlarını göstərin. */
+select 
+	 ITM_CODE,
+	 PRC_PRICE,
+	 PRC_DATE,
+	 PRC_ENDDATE,
+	 PRC_LASTUPDATE,
+	 PRC_STATUS
+from CRD_ITEMS
+left join CRD_PRICES
+on PRC_ITM_CODE = ITM_CODE
+where ITM_CODE = '101724'
+and PRC_STATUS = 1 or PRC_STATUS = 3;
+
+-- OR
+select 
+	 ITM_CODE,
+	 PRC_PRICE,
+	 PRC_DATE,
+	 PRC_ENDDATE,
+	 PRC_LASTUPDATE,
+	 PRC_STATUS,
+	 DATETRUNC(SECOND, PRC_LASTUPDATE) as SecondTrunc
+from CRD_ITEMS
+left join CRD_PRICES
+on PRC_ITM_CODE = ITM_CODE
+where ITM_CODE = '101724'
+and PRC_STATUS = 1 or PRC_STATUS = 3;
+
+/* 101724 kodlu məhsul üçün aktiv qiymətləri, 
+barkodu və bitmə tarixi 
+bu gündən 11 gündən çox olan qiymət məlumatlarını göstərin. */
+select 
+	 ITM_CODE,
+	 ITM_NAME,
+	 PRC_PRICE,
+	 PRC_DATE,
+	 PRC_ENDDATE,
+	 PRC_LASTUPDATE,
+	 PRC_STATUS,
+	 IBR_BARCODE,
+	 getdate() today
+from CRD_ITEMS
+left join CRD_PRICES
+on PRC_ITM_CODE = ITM_CODE
+left join CRD_ITEMBARCODES
+on IBR_ITM_CODE = ITM_CODE
+where ITM_CODE = '101724'
+and PRC_STATUS = 1
+and PRC_ENDDATE > DATEADD(day, 11, GETDATE())
+-- and CAST(PRC_ENDDATE as date) = CAST(GETDATE() as date);
+
+
+/* prc_itm_code '111269' ad barcode qiymet activ dir activ deyil 
+ve baslama, son tarixi ve son yenilenmesi */
+select 
+	ITM_NAME,
+	IBR_BARCODE,
+	PRC_PRICE,
+	PRC_STATUS,
+	PRC_DATE,
+	PRC_ENDDATE,
+	PRC_LASTUPDATE
+from CRD_ITEMS
+left join CRD_ITEMBARCODES
+on IBR_ITM_CODE = ITM_CODE
+left join CRD_PRICES
+on PRC_ITM_CODE = ITM_CODE
+where PRC_ITM_CODE = '111269'
+and PRC_STATUS = 1;
+
+select * from CRD_PRICES
+where PRC_ITM_CODE = '111269';
