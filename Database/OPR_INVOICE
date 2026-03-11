@@ -1,0 +1,188 @@
+USE [POSFAPCENTER]
+GO
+
+/****** Object:  Table [dbo].[OPR_INVOICE]    Script Date: 3/11/2026 12:52:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OPR_INVOICE](
+	[INV_ID] [int] IDENTITY(1,1) NOT NULL,
+	[INV_INVID] [int] NULL,
+	[INV_TRCODE] [smallint] NULL,
+	[INV_FICHENO] [varchar](20) NULL,
+	[INV_DOCNO] [varchar](50) NULL,
+	[INV_KNKNO] [varchar](50) NULL,
+	[INV_ZNO] [int] NULL,
+	[INV_EMQ] [varchar](50) NULL,
+	[INV_RTNFICHECHECK] [int] NULL,
+	[INV_RTNFICHENO] [varchar](50) NULL,
+	[INV_RTNPURPOSE] [int] NULL,
+	[INV_RTNCLNAME] [nvarchar](150) NULL,
+	[INV_RTNCLPHONE] [varchar](50) NULL,
+	[INV_OBJ_ID] [int] NULL,
+	[INV_CSC_ID] [int] NULL,
+	[INV_USR_ID] [int] NULL,
+	[INV_TERMINAL] [varchar](50) NULL,
+	[INV_SLCODE] [varchar](50) NULL,
+	[INV_SLCARDCODE] [varchar](50) NULL,
+	[INV_CLCODE] [varchar](50) NULL,
+	[INV_CLCARDCODE] [varchar](50) NULL,
+	[INV_LINECOUNT] [int] NULL,
+	[INV_DATETIME] [datetime] NULL,
+	[INV_STARTTIME] [datetime] NULL,
+	[INV_STOPTIME] [datetime] NULL,
+	[INV_TOTAL] [decimal](18, 2) NULL,
+	[INV_DISCOUNTS] [decimal](18, 2) NULL,
+	[INV_VATAMNT] [decimal](18, 2) NULL,
+	[INV_VATMATRAH] [decimal](18, 2) NULL,
+	[INV_NETTOTAL] [decimal](18, 2) NULL,
+	[INV_CURRID] [int] NULL,
+	[INV_CURRCOURSE] [decimal](18, 2) NULL,
+	[INV_CASHTOTAL] [decimal](18, 2) NULL,
+	[INV_BANKID] [int] NULL,
+	[INV_BANKCOURSE] [decimal](18, 2) NULL,
+	[INV_BANKTOTAL] [decimal](18, 2) NULL,
+	[INV_BONUSEID] [varchar](50) NULL,
+	[INV_BONUCECNV] [decimal](18, 2) NULL,
+	[INV_BONUSTOTAL] [decimal](18, 2) NULL,
+	[INV_CHECKID] [int] NULL,
+	[INV_CHECKCODE] [varchar](50) NULL,
+	[INV_CHECKTOTAL] [float] NULL,
+	[INV_CURNOTE] [nvarchar](250) NULL,
+	[INV_BANKNOTE] [nvarchar](250) NULL,
+	[INV_BONUSNOTE] [nvarchar](250) NULL,
+	[INV_CHECKNOTE] [nvarchar](250) NULL,
+	[INV_CASHGIVING] [decimal](18, 2) NULL,
+	[INV_CASHRETURN] [decimal](18, 2) NULL,
+	[INV_ISSEND] [int] NULL,
+	[INV_SENDDATE] [datetime] NULL,
+	[INV_STATUS] [int] NULL,
+	[INV_CRUSER] [int] NULL,
+	[INV_CRDATE] [datetime] NULL,
+	[INV_MDUSER] [int] NULL,
+	[INV_MDDATE] [datetime] NULL,
+	[INV_NCRZNO] [int] NULL,
+	[INV_NCRDOCNO] [int] NULL,
+	[INV_NCRRCPNO] [int] NULL,
+	[INV_NCRDAYRMN] [int] NULL,
+	[INV_NCRCOUNT] [int] NULL,
+	[INV_NCRFICHENO] [int] NULL,
+	[INV_NCRCODE] [varchar](50) NULL,
+	[INV_TKNZNO] [varchar](50) NULL,
+	[INV_TKNRCPNO] [int] NULL,
+	[INV_TKNFICHENO] [varchar](50) NULL,
+	[INV_TKNFICHEDATE] [varchar](50) NULL,
+	[INV_TKNCODE] [varchar](50) NULL,
+	[INV_NCRZDOC] [int] NULL,
+	[INV_TKNSHORTFICHENO] [varchar](50) NULL,
+	[INV_TKNSHIFTRCPNO] [int] NULL,
+	[INV_TKNZREPORTNO] [int] NULL,
+	[INV_CINVID] [int] NULL,
+	[INV_WEBDOCCODE] [varchar](50) NULL,
+	[INV_WEBCLNAME] [nvarchar](250) NULL,
+	[INV_WEBCLPHONE] [varchar](50) NULL,
+	[INV_WEBCLADDRESS] [nvarchar](250) NULL,
+	[INV_WEBAPPROVE] [int] NULL,
+	[INV_WEBDATETIME] [datetime] NULL,
+	[INV_WEBDLVSTATUS] [int] NULL,
+	[INV_WEBDLVTEXT] [nvarchar](100) NULL,
+	[INV_WEBDLVPERSON] [nvarchar](100) NULL,
+	[INV_BONUSBALANCE] [decimal](18, 5) NULL,
+	[INV_BONUSADD] [decimal](18, 5) NULL,
+	[INV_BONUSREMAIN] [decimal](18, 5) NULL,
+	[INV_STARTPAYING] [datetime] NULL,
+	[INV_CLCARDSCAN] [int] NULL,
+	[INV_BONUSADDINVOICE] [decimal](18, 5) NULL,
+	[INV_BONUSADDITEMS] [decimal](18, 5) NULL,
+	[INV_BONUSTOTALINVOICE] [decimal](18, 5) NULL,
+	[INV_BONUSTOTALITEMS] [decimal](18, 5) NULL,
+	[INV_RTNTKNFICHENO] [varchar](50) NULL,
+	[INV_RETURNLOCATION] [int] NULL,
+	[INV_PRINTCOPY] [int] NULL,
+	[INV_UMICOFICHE] [varchar](50) NULL,
+	[INV_UMICOSTATUS] [varchar](50) NULL,
+	[INV_UMICOSENDPOINT] [decimal](18, 2) NULL,
+	[INV_UMICOPAIDPOINT] [decimal](18, 2) NULL,
+	[INV_UMICOPAIDMONEY] [decimal](18, 2) NULL,
+	[INV_RTNUMICOFICHE] [varchar](50) NULL,
+	[INV_CASHCOUNT] [varchar](50) NULL,
+	[INV_M10ID] [int] NULL,
+	[INV_M10COURSE] [decimal](18, 2) NULL,
+	[INV_M10TOTAL] [decimal](18, 2) NULL,
+	[INV_M10NOTE] [nvarchar](500) NULL,
+	[INV_CASHISSEND] [int] NULL,
+	[INV_UMICOTYPE] [int] NULL,
+	[INV_USERUMICOID] [varchar](100) NULL,
+	[INV_SLNAME] [nvarchar](250) NULL,
+ CONSTRAINT [PK_OPR_INVOICE_2020] PRIMARY KEY CLUSTERED 
+(
+	[INV_ID] ASC
+)WITH (PAD_INDEX = ON, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mərkəz unikal İD' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_ID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Faktura tipi: 1-Satış; 2-Geri qaytarma' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_TRCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Proqramın verdiyi faktura nömrəsi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_FICHENO'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Sənədin üzərindəki nömrə' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_DOCNO'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Z-fakturasının nömrəsi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_ZNO'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Obyekt bağlantısı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_OBJ_ID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Kassa bağlantısı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_CSC_ID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Əməliyyatı icra edən istifadəçi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_USR_ID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Əməliyyat tarixi və saatı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_DATETIME'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Fakturanın başıanğıc vaxtı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_STARTTIME'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Fakturanın bitmə vaxtı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_STOPTIME'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ümumi məbləğ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_TOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Endirimlərin toplamı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_DISCOUNTS'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ƏDV-nin məbləği' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_VATAMNT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ƏDV çıxılmış məbləğ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_VATMATRAH'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ƏDV və endirim çıxılmış məbləğ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_NETTOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Nəğd pulla ödəniş' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_CASHTOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Bank kartı ilə ödəniş' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_BANKTOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Yığılmış bonus hesabına ödəniş' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_BONUSTOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mərkəzə gönədrilmə: 0-Göndərilməyib; 1-Göndərilib' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_ISSEND'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'-1-Silinib; 0-Passiv; 1-Aktiv' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_INVOICE', @level2type=N'COLUMN',@level2name=N'INV_STATUS'
+GO
