@@ -18,10 +18,14 @@ Through these queries, I practiced the following SQL topics:
 
 ## Tables Used
 
+- `CRD_CLIENTS` – client information 
 - `CRD_ITEMS` – product information  
 - `CRD_PRICES` – product prices  
-- `CRD_ITEMBARCODES` – product barcodes  
-
+- `CRD_ITEMBARCODES` – product barcodes
+- `CRD_ITEMGROUPS` – product groups / categories  
+- `OPR_INVOICE` – invoices / sales transactions  
+- `OPR_STLINE` – invoice line items
+  
 ## Practical Tasks
 
 These queries solve the following problems:
