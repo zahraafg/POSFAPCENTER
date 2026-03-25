@@ -1,0 +1,149 @@
+USE [POSFAPCENTERPLUS]
+GO
+
+/****** Object:  Table [dbo].[CRD_CLIENTS]    Script Date: 3/25/2026 1:43:09 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CRD_CLIENTS](
+	[CLC_ID] [int] IDENTITY(1,1) NOT NULL,
+	[CLC_TYPE] [int] NULL,
+	[CLC_FRMCODE] [varchar](50) NULL,
+	[CLC_CODE] [varchar](50) NULL,
+	[CLC_NAME] [nvarchar](50) NULL,
+	[CLC_SNAME] [nvarchar](50) NULL,
+	[CLC_FNAME] [nvarchar](50) NULL,
+	[CLC_CARDTYPE] [int] NULL,
+	[CLC_CARDCODE] [varchar](50) NULL,
+	[CLC_BIRTHDATE] [datetime] NULL,
+	[CLC_PHONE] [varchar](50) NULL,
+	[CLC_MAIL] [varchar](50) NULL,
+	[CLC_REGSTGID] [int] NULL,
+	[CLC_REGUSRID] [int] NULL,
+	[CLC_REGDATE] [datetime] NULL,
+	[CLC_GENDER] [int] NULL,
+	[CLC_PASSSERY] [nvarchar](5) NULL,
+	[CLC_PASSNUMBER] [varchar](50) NULL,
+	[CLC_MARITALSTATUS] [int] NULL,
+	[CLC_BONUSTOTAL] [decimal](18, 4) NULL,
+	[CLC_ITMBONUSTOTAL] [decimal](18, 4) NULL,
+	[CLC_BONUSUSED] [decimal](18, 4) NULL,
+	[CLC_WEBUSER] [varchar](50) NULL,
+	[CLC_WEBPWD] [varchar](50) NULL,
+	[CLC_STATUS] [int] NULL,
+	[CLC_NOTE] [nvarchar](250) NULL,
+	[CLC_LASTUPDATE] [datetime] NULL,
+	[CLC_ACCID] [int] NULL,
+	[CLC_CRUSER] [int] NULL,
+	[CLC_CRDATE] [datetime] NULL,
+	[CLC_MDUSER] [int] NULL,
+	[CLC_MDDATE] [datetime] NULL,
+	[CLC_ADDRESS] [nvarchar](250) NULL,
+	[CLC_BLOCK] [int] NULL,
+	[CLC_BLOCKDUE] [int] NULL,
+	[CLC_BLOCKDATE] [datetime] NULL,
+	[CLC_BLOCKEDBY] [int] NULL,
+	[CLC_APRSGRID] [int] NULL,
+	[CLC_APRSTGID] [int] NULL,
+	[CLC_APRUSRID] [int] NULL,
+	[CLC_APRCSCID] [int] NULL,
+	[CLC_APRTERMINAL] [varchar](50) NULL,
+	[CLC_APRREGISTER] [datetime] NULL,
+	[CLC_APRFICHENO] [varchar](50) NULL,
+	[CLC_APPROVE] [int] NULL,
+	[CLC_MESSAGEID] [varchar](50) NULL,
+	[CLC_POSITIONID] [int] NULL,
+	[CLC_CLCGROUPCODE] [varchar](50) NULL,
+	[CLC_SPECODE] [varchar](50) NULL,
+	[CLC_CYPCODE] [varchar](50) NULL,
+	[CLC_TRADECODE] [varchar](50) NULL,
+	[CLC_CALCBONUCE] [smallint] NULL,
+	[CLC_CALCDISCOUNT] [smallint] NULL,
+	[CLC_CALCDISCOUNTBONUCE] [int] NULL,
+	[CLC_CALCBONUCESPEND] [int] NULL,
+	[CLC_PRICETYPE] [int] NULL,
+	[CLC_MONTHSALELIMIT] [decimal](18, 2) NULL,
+	[CLC_IMPORTED] [int] NULL,
+	[CLC_SENDDATE] [datetime] NULL,
+	[CLC_IMPORTDATE] [datetime] NULL,
+ CONSTRAINT [PK_CRD_CLIENTS] PRIMARY KEY CLUSTERED 
+(
+	[CLC_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1-Müştəri; 2-Şirkət İşçisi; 3-Hüquqi şəxs; 4-VİP; 5-Satış Təmsilçisi; 6-Ödəmə Çekləri' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_TYPE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Firmanın kodu' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_FRMCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Müştəri kodu' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_CODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Müştəri adı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_NAME'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Müştəri familyası' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_SNAME'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Müştəri ata adı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_FNAME'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Loyality kart kodu' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_CARDCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Doğum tarixi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_BIRTHDATE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Telefon nömrəsi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_PHONE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Qeydiyyata düşdüyü obyekt' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_REGSTGID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Qeydiyyata alan istifadəçi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_REGUSRID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Qeydiyyat tarixi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_REGDATE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Müştərinin cinsi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_GENDER'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Passport seriyası' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_PASSSERY'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Passport nömrəsi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_PASSNUMBER'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1-evli; 2-subay' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_MARITALSTATUS'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Toplam yığılan bonus' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_BONUSTOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Toplam yığılan bonus' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_ITMBONUSTOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'İstifadə edilən toplam bonus' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_BONUSUSED'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Müştərinin WEB sehifesində istifadəçisi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_WEBUSER'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Müştərinin WEB sehifesində şifrəsi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_WEBPWD'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1-Aktiv; 2-Passiv; 3-Təsdiqlənməmiş' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_STATUS'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Əlavə qeydlər' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_NOTE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Son yenilənmə tarixi və saatı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CRD_CLIENTS', @level2type=N'COLUMN',@level2name=N'CLC_LASTUPDATE'
+GO
