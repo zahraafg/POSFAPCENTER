@@ -1,0 +1,138 @@
+USE [POSFAPCENTERPLUS]
+GO
+
+/****** Object:  Table [dbo].[OPR_STLINE]    Script Date: 3/25/2026 1:40:12 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OPR_STLINE](
+	[STL_ID] [int] IDENTITY(1,1) NOT NULL,
+	[STL_STLID] [int] NULL,
+	[STL_TRCODE] [smallint] NULL,
+	[STL_FICHENO] [varchar](50) NULL,
+	[STL_STLINEID] [varchar](50) NULL,
+	[STL_DATE] [datetime] NULL,
+	[STL_OBJ_ID] [int] NULL,
+	[STL_CSC_ID] [int] NULL,
+	[STL_PARENTID] [int] NULL,
+	[STL_LINETYPE] [int] NULL,
+	[STL_LINENO] [int] NULL,
+	[STL_ENTRYTYPE] [int] NULL,
+	[STL_RTNFICHENO] [varchar](50) NULL,
+	[STL_RTNTYPECODE] [varchar](50) NULL,
+	[STL_ITMCODE] [varchar](20) NULL,
+	[STL_UNITCODE] [nvarchar](20) NULL,
+	[STL_BARCODE] [varchar](50) NULL,
+	[STL_VAT] [decimal](18, 2) NULL,
+	[STL_AMOUNT] [decimal](18, 3) NULL,
+	[STL_PRICE] [decimal](18, 4) NULL,
+	[STL_TOTAL] [decimal](18, 2) NULL,
+	[STL_VATAMNT] [float] NULL,
+	[STL_VATMATRAH] [float] NULL,
+	[STL_DISCPERCENT] [decimal](18, 2) NULL,
+	[STL_DISCTOTAL] [decimal](18, 2) NULL,
+	[STL_NETTOTAL] [decimal](18, 2) NULL,
+	[STL_NOTE] [nvarchar](250) NULL,
+	[STL_ISSEND] [int] NULL,
+	[STL_SENDDATE] [datetime] NULL,
+	[STL_STATUS] [int] NULL,
+	[STL_STSUSER] [int] NULL,
+	[STL_STSPWD] [varchar](50) NULL,
+	[STL_CRUSER] [int] NULL,
+	[STL_CRDATE] [datetime] NULL,
+	[STL_MDUSER] [int] NULL,
+	[STL_MDDATE] [datetime] NULL,
+	[STL_PRMID] [int] NULL,
+	[STL_NCRZNO] [int] NULL,
+	[STL_NCRDOCNO] [int] NULL,
+	[STL_NCRRCPNO] [int] NULL,
+	[STL_NCRDAYRMN] [int] NULL,
+	[STL_NCRCOUNT] [int] NULL,
+	[STL_CSTLID] [int] NULL,
+	[STL_TERMINAL] [varchar](50) NULL,
+	[STL_RTNSTLID] [int] NULL,
+	[STL_RTNAMOUNT] [decimal](18, 3) NULL,
+	[STL_RTNTOTAL] [decimal](18, 2) NULL,
+	[STL_UNITID] [int] NULL,
+	[STL_CONVFACT] [float] NULL,
+	[STL_PRICEVAT] [decimal](18, 4) NULL,
+	[STL_UMICOSENDPOINT] [decimal](18, 2) NULL,
+	[STL_UMICOPAIDPOINT] [decimal](18, 2) NULL,
+	[STL_UMICOPAIDMONEY] [decimal](18, 2) NULL,
+	[STL_RTNLINENO] [int] NULL,
+	[STL_PVATAMNT] [float] NULL,
+	[STL_PTOTAL] [float] NULL,
+	[STL_PRICETYPE] [int] NULL,
+	[STL_PRICENORMAL] [decimal](18, 4) NULL,
+	[STL_PRICECHANGE] [decimal](18, 4) NULL,
+	[STL_CHANGEUSER] [int] NULL,
+	[STL_CHANGEDATE] [datetime] NULL,
+	[STL_UMICONO] [int] NULL,
+	[STL_RTNUMICONO] [int] NULL,
+	[STL_PRICEDEFIN] [nvarchar](250) NULL,
+ CONSTRAINT [PK_OPR_STLINE_2020] PRIMARY KEY CLUSTERED 
+(
+	[STL_ID] ASC
+)WITH (PAD_INDEX = ON, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 90, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Mərkəz Unikal İD' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_ID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Obyekt bağlantısı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_OBJ_ID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Endirim və ya bonus olanda bağlı olduğu əsas satış sətri' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_PARENTID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0-Satış; 1-Endirim; 2-Hədiyyə' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_LINETYPE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 = Manual entry; 1 = Scanner entry; 8 = Manual entry - Special Sale; 9 = Scanner entry - Special Sale' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_ENTRYTYPE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Malın kodu' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_ITMCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ölçü vahidi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_UNITCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Oxudulub satıldığı barkod' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_BARCODE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ƏDV faizi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_VAT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Satış miqdarı' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_AMOUNT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Satış qiyməti' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_PRICE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Satış məbləği' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_TOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ƏDV- məbləği' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_VATAMNT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ƏDV çıxıldıqdan sonra qalan məbləğ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_VATMATRAH'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Endirim faizi' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_DISCPERCENT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Endirim məbləği' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_DISCTOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'ƏDV və endirim çıxıldıqdan sonra qalan məbləğ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_NETTOTAL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Əlavə qeydlər' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_NOTE'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'-1-Silinib; 0-Passiv; 1-Aktiv' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'OPR_STLINE', @level2type=N'COLUMN',@level2name=N'STL_STATUS'
+GO
