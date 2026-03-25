@@ -15,6 +15,11 @@ Through these queries, I practiced the following SQL topics:
 - Analyzing active and inactive product statuses
 - Checking product price start and end dates
 - Retrieving barcode, price, and product information together
+- Calculating total sales per invoice and per customer using `SUM`.
+- Finding top-selling products and highest revenue-generating customers.
+- Identifying unsold products and customers with no invoices.
+- Using aggregate functions like `MAX` to find last purchase dates.
+- Counting different products purchased per customer.
 
 ## Tables Used
 
@@ -35,6 +40,11 @@ These queries solve the following problems:
 - Find active and inactive prices
 - Filter prices based on end date
 - Retrieve barcode and price information for specific products
+- Display invoice, customer, product, barcode, quantity, price, and total amount together.
+- Calculate total purchase amounts per customer and last purchase dates.
+- Find top 5 best-selling products and top revenue-generating customers.
+- Identify products that were never sold and customers who never made a purchase.
+- Count the number of different products purchased by each customer.
   
 ## 🛠 Technologies
 
