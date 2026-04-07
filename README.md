@@ -2,7 +2,7 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/zahraafg/POSFAPCENTER)
 ![GitHub last commit](https://img.shields.io/github/last-commit/zahraafg/POSFAPCENTER)
-![GitHub language](https://img.shields.io/github/languages/top/zahraafg/POSFAPCENTER)
+![Top Language](https://img.shields.io/github/languages/top/zahraafg/POSFAPCENTER?color=blue)
 
 This repository contains practical SQL queries written using a custom ERP-style database schema (POSFAPCENTER).  
 The goal of this project is to improve SQL skills by working with real-world relational data.
