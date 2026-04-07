@@ -1,54 +1,125 @@
-# SQL Practice – Product, Price and Barcode Queries
+# SQL Practice – ERP Database Queries
 
-This repository contains practical SQL queries I wrote to work with product (items), price (prices), and barcode (barcodes) data in SQL Server.
+![GitHub repo size](https://img.shields.io/github/repo-size/zahraafg/POSFAPCENTER)
+![GitHub last commit](https://img.shields.io/github/last-commit/zahraafg/POSFAPCENTER)
+![GitHub language](https://img.shields.io/github/languages/top/zahraafg/POSFAPCENTER)
 
-## What I Learned
+This repository contains practical SQL queries written using a custom ERP-style database schema (AzerRetailERP).  
+The goal of this project is to improve SQL skills by working with real-world relational data.
 
-Through these queries, I practiced the following SQL topics:
+---
 
-- Using `JOIN` and `LEFT JOIN` to combine tables
-- Applying filters with `WHERE`
-- Counting data using `COUNT` and `GROUP BY`
-- Using `EXISTS` and `NOT EXISTS`
-- Working with date functions like `DATEADD`, `GETDATE`, and `EOMONTH`
-- Using window functions (`COUNT() OVER()`)
-- Analyzing active and inactive product statuses
-- Checking product price start and end dates
-- Retrieving barcode, price, and product information together
-- Calculating total sales per invoice and per customer using `SUM`.
-- Finding top-selling products and highest revenue-generating customers.
-- Identifying unsold products and customers with no invoices.
-- Using aggregate functions like `MAX` to find last purchase dates.
-- Counting different products purchased per customer.
+## Project Overview
+
+This project focuses on writing SQL queries to analyze data related to:
+
+- Products
+- Prices
+- Barcodes
+- Customers
+- Invoices
+- Sales transactions
+- POS terminals
+
+---
+
+## What I Practiced
+
+Through these queries, I improved my understanding of:
+
+- `JOIN` and `LEFT JOIN`
+- Filtering data using `WHERE` and `HAVING`
+- Aggregate functions (`SUM`, `COUNT`, `MAX`)
+- Grouping data using `GROUP BY`
+- Window functions (`ROW_NUMBER`)
+- Working with invoices and transactional data
+- Calculating total sales and analyzing customers
+- Identifying top and low-performing records
+- Extracting last transaction dates
+
+---
 
 ## Tables Used
 
-- `CRD_CLIENTS` – client information 
+- `CRD_CLIENTS` – customer information  
 - `CRD_ITEMS` – product information  
-- `CRD_PRICES` – product prices  
-- `CRD_ITEMBARCODES` – product barcodes
-- `CRD_ITEMGROUPS` – product groups / categories  
-- `OPR_INVOICE` – invoices / sales transactions  
-- `OPR_STLINE` – invoice line items
-  
-## Practical Tasks
+- `CRD_PRICES` – product pricing  
+- `CRD_ITEMBARCODES` – product barcodes  
+- `CRD_ITEMGROUPS` – product categories  
+- `CRD_BANKTERMINAL` – POS terminals  
+- `OPR_INVOICE` – invoices  
+- `OPR_STLINE` – invoice line items  
+- `OPR_ACCOUNTS` – account mappings  
 
-These queries solve the following problems:
+---
 
-- Display product barcode, price, and status
-- Count prices for specific products
-- Find active and inactive prices
-- Filter prices based on end date
-- Retrieve barcode and price information for specific products
-- Display invoice, customer, product, barcode, quantity, price, and total amount together.
-- Calculate total purchase amounts per customer and last purchase dates.
-- Find top 5 best-selling products and top revenue-generating customers.
-- Identify products that were never sold and customers who never made a purchase.
-- Count the number of different products purchased by each customer.
-  
+## Sample Queries
+
+Below are some example queries from this project:
+
+👉 For all queries, see the full list here:  
+[View full SQL queries on GitHub](https://github.com/zahraafg/POSFAPCENTER/tree/main/Sor%C4%9Fular)
+
+---
+
+## Last Sale Date per Product
+
+```sql
+WITH CTE AS(
+SELECT 
+	ITM_CODE,
+	ITM_NAME,
+	INV_DATETIME,
+	ROW_NUMBER() OVER(
+	PARTITION BY ITM_NAME
+	ORDER BY INV_DATETIME DESC
+	) AS RN
+FROM CRD_ITEMS
+LEFT JOIN OPR_STLINE
+ON STL_ITMCODE = ITM_CODE 
+LEFT JOIN OPR_INVOICE
+ON INV_FICHENO = STL_FICHENO
+-- WHERE ITM_CODE = '101216'
+)
+SELECT *
+FROM CTE
+-- WHERE RN = 1;
+
+--OR
+SELECT 
+	ITM_CODE,
+	ITM_NAME,
+	MAX(INV_DATETIME) AS LAST_DAY
+FROM CRD_ITEMS
+LEFT JOIN OPR_STLINE
+ON STL_ITMCODE = ITM_CODE
+LEFT JOIN OPR_INVOICE
+ON INV_FICHENO = STL_FICHENO
+-- WHERE ITM_NAME = 'LAYS CIPS 140 GR KABABLI'
+GROUP BY 
+	ITM_CODE,
+	ITM_NAME
+ORDER BY LAST_DAY DESC;
+
+---
+
+## Purpose
+This project is created for:
+. Practicing real-world SQL scenarios
+. Improving backend/data querying skills
+. Preparing for junior SQL / backend interviews
+. Building a strong GitHub portfolio
+
 ## 🛠 Technologies
+SQL (T-SQL compatible)
+SQL Server
 
-- SQL (T-SQL compatible)
+## 📁 Repository Structure
+Sorğular/ – contains all SQL query files
+Each file includes practical query examples solving real problems
+
+## 🔗 Full Project
+👉 https://github.com/zahraafg/POSFAPCENTER
 
 ---
 
