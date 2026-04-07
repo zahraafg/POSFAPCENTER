@@ -55,10 +55,10 @@ Through these queries, I improved my understanding of:
 
 ## Purpose
 This project is created for:
-. Practicing real-world SQL scenarios
-. Improving backend/data querying skills
-. Preparing for junior SQL / backend interviews
-. Building a strong GitHub portfolio
+ . Practicing real-world SQL scenarios
+ . Improving backend/data querying skills
+ . Preparing for junior SQL / backend interviews
+ . Building a strong GitHub portfolio
 
 ---
 
