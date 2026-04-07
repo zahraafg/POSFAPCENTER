@@ -53,6 +53,21 @@ Through these queries, I improved my understanding of:
 
 ---
 
+## Purpose
+This project is created for:
+. Practicing real-world SQL scenarios
+. Improving backend/data querying skills
+. Preparing for junior SQL / backend interviews
+. Building a strong GitHub portfolio
+
+---
+
+## 📁 Repository Structure
+Sorğular/ – contains all SQL query files
+Each file includes practical query examples solving real problems
+
+---
+
 ## Sample Queries
 
 Below are some example queries from this project:
@@ -100,23 +115,14 @@ GROUP BY
 	ITM_CODE,
 	ITM_NAME
 ORDER BY LAST_DAY DESC;
-
+```
 ---
-
-## Purpose
-This project is created for:
-. Practicing real-world SQL scenarios
-. Improving backend/data querying skills
-. Preparing for junior SQL / backend interviews
-. Building a strong GitHub portfolio
 
 ## 🛠 Technologies
 SQL (T-SQL compatible)
 SQL Server
 
-## 📁 Repository Structure
-Sorğular/ – contains all SQL query files
-Each file includes practical query examples solving real problems
+---
 
 ## 🔗 Full Project
 👉 https://github.com/zahraafg/POSFAPCENTER
