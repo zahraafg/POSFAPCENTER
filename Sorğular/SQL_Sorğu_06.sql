@@ -137,6 +137,54 @@ group by
 having  SUM(STL_AMOUNT * STL_PRICE) > 1000 
 and COUNT(distinct INV_FICHENO) < 50;
 
+/* Hər gün üzrə satışları çıxart:
+tarix (INV_DATETIME → date format)
+ümumi satış məbləği
+satılan invoice sayı */
+select 
+	ITM_NAME,
+	cast(INV_DATETIME as date) as INV_DATETIME,
+	SUM(STL_AMOUNT * STL_PRICE) as total_sales,
+	COUNT(distinct INV_FICHENO) as count_invoice
+from CRD_ITEMS
+left join OPR_STLINE
+on STL_ITMCODE = ITM_CODE
+left join OPR_INVOICE
+on STL_FICHENO = INV_FICHENO
+group by ITM_NAME, INV_DATETIME
+order by total_sales desc;
+
+/* Ən çox qaytarılan məhsulları tap:
+məhsul adı
+return sayı
+return ümumi məbləği */
+select 
+	ITM_NAME,
+	COUNT(STL_TRCODE) as return_sayı,
+	SUM(STL_AMOUNT * STL_PRICE) as total_məbləğ
+from CRD_ITEMS
+left join OPR_STLINE
+on STL_ITMCODE = ITM_CODE
+group by ITM_NAME;
+
+/* Hər məhsul üçün:
+məhsul adı
+total satış
+invoice count
+average sale price */
+select 
+	ITM_NAME,
+	SUM(STL_AMOUNT * STL_PRICE) as total_sales,
+	COUNT(distinct INV_FICHENO) as count_invoice,
+	SUM(STL_AMOUNT * STL_PRICE) * 1.0 / sum(STL_AMOUNT) as avg_sale_price
+from CRD_ITEMS
+left join OPR_STLINE
+on STL_ITMCODE = ITM_CODE
+left join OPR_INVOICE
+on INV_FICHENO = STL_FICHENO
+group by ITM_NAME
+having COUNT(distinct INV_FICHENO) > 3;
+
 /* '5449000189332' bu barcode gore mehsul tap 
 nece defe satilib 
 her cekine gore tap
