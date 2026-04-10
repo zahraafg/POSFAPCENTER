@@ -229,6 +229,41 @@ left join OPR_STLINE
 on STL_FICHENO = INV_FICHENO
 group by CLC_NAME;
 
+/* Hər ay üzrə:
+client adı
+ay (INV_DATETIME → month)
+total sales
+rank (ən çox alan 1-ci olsun) */
+with cte as(
+select 
+	CLC_NAME,
+	FORMAT(INV_DATETIME, 'yyyy_MM') as sales_month,
+	SUM(STL_AMOUNT * STL_PRICE) as total_sales
+from CRD_CLIENTS
+left join OPR_INVOICE
+on INV_CLCODE = CLC_CODE
+left join OPR_STLINE
+on STL_FICHENO = INV_FICHENO
+group by 
+	CLC_NAME, 
+	INV_DATETIME
+),
+cte2 as(
+	select *,
+	ROW_NUMBER() over(
+	partition by sales_month
+	order by total_sales desc
+	) as rn
+from cte
+)
+select 
+	CLC_NAME, 
+	sales_month,
+	total_sales
+from cte2
+where rn <= 3
+order by sales_month, rn;
+
 /* '5449000189332' bu barcode gore mehsul tap 
 nece defe satilib 
 her cekine gore tap
