@@ -185,6 +185,50 @@ on INV_FICHENO = STL_FICHENO
 group by ITM_NAME
 having COUNT(distinct INV_FICHENO) > 3;
 
+/* Hər məhsul üçün:
+məhsul adı
+total satış məbləği
+satılan ümumi quantity
+average unit price (weighted)
+max price (ən baha satış qiyməti) */
+select 
+	ITM_NAME,
+	STL_TRCODE,
+	SUM(STL_AMOUNT * STL_PRICE) as total_sales,
+	SUM(STL_AMOUNT) as total_amount,
+	SUM(STL_AMOUNT * STL_PRICE) * 1.0 / SUM(STL_AMOUNT) as avg_price,
+	MAX(STL_PRICE) as max_price
+from CRD_ITEMS
+left join OPR_STLINE 
+on STL_ITMCODE = ITM_CODE
+where STL_TRCODE = 1
+group by 
+	ITM_NAME,
+	STL_TRCODE;
+
+/* Hər müştəri (client) üçün çıxart:
+client adı
+total sales (ümumi alış məbləği)
+invoice count
+average order value
+customer segment */
+select 
+	CLC_NAME,
+	SUM(STL_AMOUNT * STL_PRICE) as total_sales,
+	COUNT(distinct INV_FICHENO) as count_invoice,
+	SUM(STL_AMOUNT * STL_PRICE) * 1.0 / COUNT(distinct INV_FICHENO) as avg_order_value,
+	case
+		when SUM(STL_AMOUNT * STL_PRICE) >= 5000 then 'VIP'
+		when SUM(STL_AMOUNT * STL_PRICE) between 2000 and 4999 then 'GOLD'
+		else 'NORMAL'
+	end as segment
+from CRD_CLIENTS
+left join OPR_INVOICE
+on INV_CLCODE = CLC_CODE
+left join OPR_STLINE
+on STL_FICHENO = INV_FICHENO
+group by CLC_NAME;
+
 /* '5449000189332' bu barcode gore mehsul tap 
 nece defe satilib 
 her cekine gore tap
