@@ -19,7 +19,10 @@ This project focuses on writing SQL queries to analyze data related to:
 - Customers
 - Invoices
 - Sales transactions
+- Return transactions
+- Payment details
 - POS terminals
+- Bank and currency information
 
 ---
 
@@ -45,7 +48,8 @@ Through these queries, I improved my understanding of:
 - `CRD_ITEMS` – product information  
 - `CRD_PRICES` – product pricing  
 - `CRD_ITEMBARCODES` – product barcodes  
-- `CRD_ITEMGROUPS` – product categories  
+- `CRD_ITEMGROUPS` – product categories
+- `CRD_BANKCURRENCY` – bank currency information  
 - `CRD_BANKTERMINAL` – POS terminals  
 - `OPR_INVOICE` – invoices  
 - `OPR_STLINE` – invoice line items  
@@ -76,6 +80,41 @@ Below are some example queries from this project:
 👉 For all queries, see the full list here:  
 [View full SQL queries on GitHub](https://github.com/zahraafg/POSFAPCENTER/tree/main/Sor%C4%9Fular)
 
+---
+
+---
+
+## ERP SQL Task: Invoice, Return and Payment Details Extraction
+
+```sql
+SELECT 
+	ITM_CODE,
+	ITM_NAME,
+	INV_FICHENO,
+	INV_RTNFICHENO,
+	INV_RTNPURPOSE, 
+	INV_RTNCLNAME, 
+	INV_TRCODE, 
+	INV_DATETIME,
+	STL_TRCODE, 
+	BNC_NAME,
+	ACO_PAYTYPE,
+	case 
+	when STL_TRCODE = 1 then 'satilib'
+	when STL_TRCODE = 2 then 'qaytarib'
+	end as status
+FROM CRD_ITEMS
+LEFT JOIN OPR_STLINE
+ON STL_ITMCODE = ITM_CODE
+LEFT JOIN OPR_INVOICE
+ON INV_FICHENO = STL_FICHENO
+LEFT JOIN OPR_ACCOUNTS
+ON ACO_INVFICHENO = INV_FICHENO
+LEFT JOIN CRD_BANKCURRENCY
+ON BNC_ID = ACO_BNCID
+WHERE INV_FICHENO = '101001260209165125'
+OR INV_RTNFICHENO = '101001260209165125';
+```
 ---
 
 ## Last Sale Date per Product
