@@ -58,8 +58,8 @@ Through these queries, I improved my understanding of:
 ---
 
 ## Analysis
-Monthly Top Product
-Monthly Sales Trend (LAG / LEAD)
+- Monthly Top Product
+- Monthly Sales Trend (LAG / LEAD)
 
 ---
 
